@@ -1,31 +1,19 @@
-import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 
-@Composable
-@Preview
-fun App() {
-    var text by remember { mutableStateOf("Hello, World!") }
-
-    MaterialTheme {
-        Button(onClick = {
-            text = "Hello, Desktop!"
-        }) {
-            Text(text)
-        }
-    }
-}
-
 fun main() = application {
-    Window(onCloseRequest = ::exitApplication) {
-        App()
+    val appState = AppState()
+
+    appState.addEvent(FreeRTOSEvent("Task1", "Created", System.currentTimeMillis()))
+    appState.addEvent(FreeRTOSEvent("Task2", "Switched", System.currentTimeMillis() + 1000))
+
+    Window(
+        onCloseRequest = ::exitApplication,
+        title = "FreeRTOS Tracker"
+    ) {
+        MaterialTheme {
+            TaskEventList(appState)
+        }
     }
 }
