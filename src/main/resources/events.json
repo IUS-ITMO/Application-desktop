@@ -1,0 +1,113 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "event_code": 1,
+      "name": "start",
+      "server_time": 1742033149
+    },
+    {
+      "id": 1,
+      "event_code": 2,
+      "server_time": 1742033149,
+      "name": "idle",
+      "priority": 0,
+      "stack_size": 75,
+      "is_static": true
+    },
+    {
+      "id": 3,
+      "event_code": 2,
+      "server_time": 1742033149,
+      "name": "myTask",
+      "priority": 3,
+      "stack_size": 75,
+      "is_static": true
+    },
+    {
+      "id": 4,
+      "event_code": 2,
+      "server_time": 1742033149,
+      "name": "myTask-2",
+      "priority": 3,
+      "stack_size": 300,
+      "is_static": false
+    },
+    {
+      "id": 5,
+      "event_code": 3,
+      "server_time": 1742033188,
+      "name": "myTask-2",
+      "core_id": 1
+    },
+    {
+      "id": 6,
+      "event_code": 3,
+      "server_time": 1742033310,
+      "name": "idle",
+      "core_id": 1
+    },
+    {
+      "id": 7,
+      "event_code": 3,
+      "server_time": 1742033400,
+      "name": "myTask-2",
+      "core_id": 1
+    },
+    {
+      "id": 8,
+      "event_code": 3,
+      "server_time": 1742033499,
+      "name": "myTask",
+      "core_id": 1
+    },
+    {
+      "id": 9,
+      "event_code": 3,
+      "server_time": 1742033890,
+      "name": "idle",
+      "core_id": 1
+    },
+    {
+      "id": 10,
+      "event_code": 3,
+      "server_time": 1742034000,
+      "name": "myTask-2",
+      "core_id": 1
+    },
+    {
+      "id": 11,
+      "event_code": 3,
+      "server_time": 1742034090,
+      "name": "idle",
+      "core_id": 1
+    },
+    {
+      "id": 12,
+      "event_code": 3,
+      "server_time": 1742034150,
+      "name": "myTask",
+      "core_id": 1
+    },
+    {
+      "id": 13,
+      "event_code": 3,
+      "server_time": 1742034155,
+      "name": "myTask-2",
+      "core_id": 1
+    },
+    {
+      "id": 14,
+      "event_code": 4,
+      "server_time": 1742034255,
+      "name": "myTask-2"
+    },
+    {
+      "id": 15,
+      "event_code": 3,
+      "server_time": 1742034255,
+      "name": "idle",
+      "core_id": 1
+    }
+  ]
+}
