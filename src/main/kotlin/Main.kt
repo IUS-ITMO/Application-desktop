@@ -3,6 +3,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import state.AppState
 import ui.screens.MainScreen
+import ui.screens.App
 import utils.JsonLoader
 
 fun main() = application {
@@ -15,7 +16,8 @@ fun main() = application {
         title = "FreeRTOS Event Viewer"
     ) {
         MaterialTheme {
-            MainScreen(appState)
+//            MainScreen(appState)
+            App(appState)
         }
     }
 }
