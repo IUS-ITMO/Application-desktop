@@ -11,6 +11,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import state.AppState
+import ui.components.EventFilter
 import ui.components.EventList
 import ui.components.EventStats
 import ui.components.GanttChart
@@ -47,6 +48,8 @@ class MainScreen1(private val appState: AppState) : Screen {
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
+
+            EventFilter(appState)
 
             when {
                 appState.events.isEmpty() -> {

@@ -11,11 +11,18 @@ import state.AppState
 
 @Composable
 fun EventList(appState: AppState) {
+    val filteredEvents = appState.events.filter { event ->
+        (appState.selectedEventType == null || appState.selectedEventType == event.event_code) &&
+                (appState.selectedTaskName.isNullOrEmpty() || event.name.contains(appState.selectedTaskName ?: "", ignoreCase = true)) &&
+                (appState.selectedTimeRange == null ||
+                        (event.server_time in appState.selectedTimeRange!!.first..appState.selectedTimeRange!!.second))
+    }
+
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(appState.events) { event ->
+        items(filteredEvents) { event ->
             EventItem(event)
         }
     }
