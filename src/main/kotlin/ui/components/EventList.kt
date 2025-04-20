@@ -14,8 +14,8 @@ fun EventList(appState: AppState) {
     val filteredEvents = appState.events.filter { event ->
         (appState.selectedEventType == null || appState.selectedEventType == event.event_code) &&
                 (appState.selectedTaskName.isNullOrEmpty() || event.name.contains(appState.selectedTaskName ?: "", ignoreCase = true)) &&
-                (appState.selectedTimeRange == null ||
-                        (event.server_time in appState.selectedTimeRange!!.first..appState.selectedTimeRange!!.second))
+                (appState.selectedTimeRange == null || (event.server_time in appState.selectedTimeRange!!.first..appState.selectedTimeRange!!.second)) &&
+                (appState.selectedCoreId == null || event.core_id == appState.selectedCoreId)
     }
 
     LazyColumn(

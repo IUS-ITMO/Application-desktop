@@ -1,9 +1,7 @@
 package ui.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -26,32 +24,43 @@ fun EventFilter(appState: AppState) {
             modifier = Modifier.fillMaxWidth()
         )
 
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Text("Time Range:")
+        // Новый фильтр по ядру процессора
+        val coreIds = remember { appState.events.mapNotNull { it.core_id }.distinct().sorted() }
+        if (coreIds.isNotEmpty()) {
+            DropdownMenu(
+                options = listOf("All cores") + coreIds.map { "Core $it" },
+                selectedOption = appState.selectedCoreId?.let { coreIds.indexOf(it) + 1 } ?: 0,
+                onSelect = { index ->
+                    appState.selectedCoreId = if (index == 0) null else coreIds[index - 1]
+                }
+            )
         }
+
+        TimeRangeFilter(appState)
     }
 }
 
 @Composable
-fun DropdownMenu(options: List<String>, selectedOption: Int, onSelect: (Int?) -> Unit) {
+fun DropdownMenu(
+    options: List<String>,
+    selectedOption: Int,
+    onSelect: (Int) -> Unit
+) {
     var expanded by remember { mutableStateOf(false) }
     Box(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            text = options[selectedOption],
-            modifier = Modifier.clickable(onClick = { expanded = true }),
-            style = MaterialTheme.typography.body1
-        )
+        OutlinedButton(
+            onClick = { expanded = true },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(options[selectedOption])
+        }
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
             options.forEachIndexed { index, option ->
                 DropdownMenuItem(onClick = {
-                    if (option == "All") {
-                        onSelect(null)
-                    } else {
-                        onSelect(index)
-                    }
+                    onSelect(index)
                     expanded = false
                 }) {
                     Text(text = option)
