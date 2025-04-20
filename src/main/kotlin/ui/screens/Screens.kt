@@ -24,64 +24,66 @@ fun App(appState: AppState) {
 class MainScreen1(private val appState: AppState) : Screen {
     @Composable
     override fun Content() {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            appState.errorMessage?.let { message ->
-                AlertDialog(
-                    onDismissRequest = { appState.errorMessage = null },
-                    title = { Text("Error") },
-                    text = { Text(message) },
-                    confirmButton = {
-                        Button(onClick = { appState.errorMessage = null }) {
-                            Text("OK")
-                        }
-                    }
-                )
-            }
-
-            Text(
-                text = "FreeRTOS Task Events",
-                style = MaterialTheme.typography.h4,
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-
-            EventFilter(appState)
-
-            val navigator = LocalNavigator.currentOrThrow
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly
+        AnimatedScreen {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
             ) {
-                Button(onClick = { navigator.push(TaskStatsScreen(appState)) }) {
-                    Text("Task Stats")
-                }
-                Button(onClick = { navigator.push(CpuLoadScreen(appState)) }) {
-                    Text("CPU Load")
-                }
-                Button(onClick = { navigator.push(ChartScreen(appState)) }) {
-                    Text("Gantt Chart")
-                }
-            }
-
-            when {
-                appState.events.isEmpty() -> {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        if (appState.errorMessage == null) {
-                            CircularProgressIndicator()
-                        } else {
-                            Text("No data available")
+                appState.errorMessage?.let { message ->
+                    AlertDialog(
+                        onDismissRequest = { appState.errorMessage = null },
+                        title = { Text("Error") },
+                        text = { Text(message) },
+                        confirmButton = {
+                            Button(onClick = { appState.errorMessage = null }) {
+                                Text("OK")
+                            }
                         }
+                    )
+                }
+
+                Text(
+                    text = "FreeRTOS Task Events",
+                    style = MaterialTheme.typography.h4,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                EventFilter(appState)
+
+                val navigator = LocalNavigator.currentOrThrow
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Button(onClick = { navigator.push(TaskStatsScreen(appState)) }) {
+                        Text("Task Stats")
+                    }
+                    Button(onClick = { navigator.push(CpuLoadScreen(appState)) }) {
+                        Text("CPU Load")
+                    }
+                    Button(onClick = { navigator.push(ChartScreen(appState)) }) {
+                        Text("Gantt Chart")
                     }
                 }
-                else -> {
-                    EventStats(appState.events)
-                    EventList(appState)
+
+                when {
+                    appState.events.isEmpty() -> {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            if (appState.errorMessage == null) {
+                                CircularProgressIndicator()
+                            } else {
+                                Text("No data available")
+                            }
+                        }
+                    }
+                    else -> {
+                        EventStats(appState.events)
+                        EventList(appState)
+                    }
                 }
             }
         }
@@ -91,31 +93,33 @@ class MainScreen1(private val appState: AppState) : Screen {
 class ChartScreen(private val appState: AppState) : Screen {
     @Composable
     override fun Content() {
-        Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            val navigator = LocalNavigator.currentOrThrow
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
+        AnimatedScreen {
+            Column(
+                modifier = Modifier.fillMaxSize().padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Button(onClick = { navigator.pop() }) {
-                    Text("Back")
+                val navigator = LocalNavigator.currentOrThrow
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Button(onClick = { navigator.pop() }) {
+                        Text("Back")
+                    }
                 }
-            }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text("Gantt chart", style = MaterialTheme.typography.h4)
-            }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("Gantt chart", style = MaterialTheme.typography.h4)
+                }
 
-            GanttChart(appState.events)
+                GanttChart(appState.events)
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
+            }
         }
     }
 }

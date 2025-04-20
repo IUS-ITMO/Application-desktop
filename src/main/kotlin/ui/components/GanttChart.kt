@@ -45,6 +45,7 @@ fun generateTaskMap(events: List<Event>): Map<String, MutableList<Pair<Long, Lon
 @Composable
 fun GanttChart(events: List<Event>) {
     val taskMap = generateTaskMap(events)
+    val colors = listOf(Color(0xFF4285F4), Color(0xFFEA4335), Color(0xFFFBBC05), Color(0xFF34A853))
 
     val minTime = taskMap.values.flatten().minOfOrNull { it.first } ?: return
     val maxTime = taskMap.values.flatten().maxOfOrNull { it.second } ?: return
@@ -90,10 +91,11 @@ fun GanttChart(events: List<Event>) {
                     val startX = ((start - minTime).toFloat() / timeRange) * canvasWidth
                     val endX = ((end - minTime).toFloat() / timeRange) * canvasWidth
 
-                    drawRect(
-                        color = Color.Blue,
+                    drawRoundRect(
+                        color = colors[index % colors.size],
                         topLeft = Offset(startX, index * 35f),
-                        size = Size(endX - startX, 20f)
+                        size = Size(endX - startX, 30f),
+                        cornerRadius = CornerRadius(4f)
                     )
                 }
             }

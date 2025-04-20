@@ -22,24 +22,27 @@ import java.util.*
 class TaskStatsScreen(private val appState: AppState) : Screen {
     @Composable
     override fun Content() {
-        val stats = remember { StatsCalculator.calculateTasksStats(appState.events) }
-        val navigator = LocalNavigator.currentOrThrow
+        AnimatedScreen {
 
-        Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Button(onClick = { navigator.pop() }) {
-                    Text("Back")
+            val stats = remember { StatsCalculator.calculateTasksStats(appState.events) }
+            val navigator = LocalNavigator.currentOrThrow
+
+            Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Button(onClick = { navigator.pop() }) {
+                        Text("Back")
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("Task Statistics", style = MaterialTheme.typography.h4)
                 }
-                Spacer(modifier = Modifier.width(16.dp))
-                Text("Task Statistics", style = MaterialTheme.typography.h4)
-            }
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            LazyColumn {
-                items(stats.sortedByDescending { it.totalRuntime }) { stat ->
-                    TaskStatItem(stat)
-                    Divider()
+                LazyColumn {
+                    items(stats.sortedByDescending { it.totalRuntime }) { stat ->
+                        TaskStatItem(stat)
+                        Divider()
+                    }
                 }
             }
         }

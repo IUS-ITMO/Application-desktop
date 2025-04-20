@@ -19,33 +19,35 @@ import utils.StatsCalculator
 class CpuLoadScreen(private val appState: AppState) : Screen {
     @Composable
     override fun Content() {
-        val loadPoints = remember {
-            StatsCalculator.calculateCpuLoad(appState.events)
-        }
-        val navigator = LocalNavigator.currentOrThrow
+        AnimatedScreen {
+            val loadPoints = remember {
+                StatsCalculator.calculateCpuLoad(appState.events)
+            }
+            val navigator = LocalNavigator.currentOrThrow
 
-        Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Button(onClick = { navigator.pop() }) {
-                    Text("Back")
+            Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Button(onClick = { navigator.pop() }) {
+                        Text("Back")
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("CPU Load", style = MaterialTheme.typography.h4)
                 }
-                Spacer(modifier = Modifier.width(16.dp))
-                Text("CPU Load", style = MaterialTheme.typography.h4)
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text("CPU Load Over Time", style = MaterialTheme.typography.h6)
+                CpuLoadChart(loadPoints)
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                val avgLoad = if (loadPoints.isNotEmpty()) {
+                    loadPoints.map { it.load }.average() * 100
+                } else {
+                    0.0
+                }
+                Text("Average CPU Load: ${"%.1f".format(avgLoad)}%")
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text("CPU Load Over Time", style = MaterialTheme.typography.h6)
-            CpuLoadChart(loadPoints)
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            val avgLoad = if (loadPoints.isNotEmpty()) {
-                loadPoints.map { it.load }.average() * 100
-            } else {
-                0.0
-            }
-            Text("Average CPU Load: ${"%.1f".format(avgLoad)}%")
         }
     }
 }

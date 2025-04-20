@@ -15,7 +15,6 @@ fun main() = application {
         title = "FreeRTOS Event Viewer"
     ) {
         MaterialTheme {
-//            MainScreen(appState)
             App(appState)
         }
     }
