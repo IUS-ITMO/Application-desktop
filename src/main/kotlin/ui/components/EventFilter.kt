@@ -13,14 +13,12 @@ import state.AppState
 @Composable
 fun EventFilter(appState: AppState) {
     Column {
-        // Фильтр по типу события
         DropdownMenu(
             options = listOf("All", "System Start", "Task Created", "Context Switch", "Task Deleted"),
             selectedOption = appState.selectedEventType ?: 0,
             onSelect = { appState.selectedEventType = it }
         )
 
-        // Фильтр по имени задачи
         TextField(
             value = appState.selectedTaskName ?: "",
             onValueChange = { appState.selectedTaskName = it },
@@ -28,10 +26,8 @@ fun EventFilter(appState: AppState) {
             modifier = Modifier.fillMaxWidth()
         )
 
-        // Фильтр по времени
         Row(modifier = Modifier.fillMaxWidth()) {
             Text("Time Range:")
-            // Вы можете добавить UI для ввода времени в формате timestamp (например, два поля для "от" и "до")
         }
     }
 }
@@ -52,7 +48,7 @@ fun DropdownMenu(options: List<String>, selectedOption: Int, onSelect: (Int?) ->
             options.forEachIndexed { index, option ->
                 DropdownMenuItem(onClick = {
                     if (option == "All") {
-                        onSelect(null) // Устанавливаем null для "All"
+                        onSelect(null)
                     } else {
                         onSelect(index)
                     }

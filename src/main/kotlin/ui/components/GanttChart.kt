@@ -13,9 +13,8 @@ import androidx.compose.ui.unit.*
 import model.Event
 
 fun generateTaskMap(events: List<Event>): Map<String, MutableList<Pair<Long, Long>>> {
-    val taskMap = mutableMapOf<String, MutableList<Pair<Long, Long>>>() // name -> list of (start, end)
+    val taskMap = mutableMapOf<String, MutableList<Pair<Long, Long>>>()
 
-    // Сортируем события по времени
     var lastTask: String? = null
     var lastEndTime: Long? = null
 
@@ -29,7 +28,7 @@ fun generateTaskMap(events: List<Event>): Map<String, MutableList<Pair<Long, Lon
                 lastEndTime = eventTime
                 taskMap.putIfAbsent(event.name, mutableListOf())
             }
-            3 -> { // Начало выполнения задачи
+            3 -> {
                 if (lastTask != null && lastEndTime != null) {
                     taskMap.computeIfAbsent(taskName) { mutableListOf() }
                         .add(lastEndTime to eventTime)
@@ -37,25 +36,8 @@ fun generateTaskMap(events: List<Event>): Map<String, MutableList<Pair<Long, Lon
                 lastTask = taskName
                 lastEndTime = eventTime
             }
-//            4 -> { // Завершение задачи
-//                if (lastTask == taskName && lastEndTime != null) {
-//                    taskMap.computeIfAbsent(taskName) { mutableListOf() }
-//                        .add(lastEndTime!! to eventTime)
-//                }
-//            }
         }
     }
-
-//    for ((task, intervals) in taskMap) {
-//        println("Task: $task")
-//        for ((start, end) in intervals) {
-//            println("Start: $start, End: $end")
-//        }
-//    }
-//    for ((task, startTime) in activeTasks) {
-//        taskMap.computeIfAbsent(task) { mutableListOf() }
-//            .add(startTime to System.currentTimeMillis())
-//    }
 
     return taskMap
 }
@@ -79,7 +61,6 @@ fun GanttChart(events: List<Event>) {
     Spacer(modifier = Modifier.height(16.dp))
 
     Row(Modifier.fillMaxSize()) {
-        // Колонка с названиями задач
         LazyColumn(
             modifier = Modifier.width(150.dp)
         ) {

@@ -21,7 +21,6 @@ fun App(appState: AppState) {
     Navigator(MainScreen1(appState))
 }
 
-// Главный экран
 class MainScreen1(private val appState: AppState) : Screen {
     @Composable
     override fun Content() {
@@ -51,6 +50,22 @@ class MainScreen1(private val appState: AppState) : Screen {
 
             EventFilter(appState)
 
+            val navigator = LocalNavigator.currentOrThrow
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Button(onClick = { navigator.push(TaskStatsScreen(appState)) }) {
+                    Text("Task Stats")
+                }
+                Button(onClick = { navigator.push(CpuLoadScreen(appState)) }) {
+                    Text("CPU Load")
+                }
+                Button(onClick = { navigator.push(ChartScreen(appState)) }) {
+                    Text("Gantt Chart")
+                }
+            }
+
             when {
                 appState.events.isEmpty() -> {
                     Box(
@@ -66,14 +81,6 @@ class MainScreen1(private val appState: AppState) : Screen {
                 }
                 else -> {
                     EventStats(appState.events)
-//                    Spacer(modifier = Modifier.height(16.dp))
-
-                    val navigator = LocalNavigator.currentOrThrow
-                    Button(
-                        onClick = { navigator.push(ChartScreen(appState)) }
-                    ) {
-                        Text("Open the schedule of all events")
-                    }
                     EventList(appState)
                 }
             }
@@ -81,7 +88,6 @@ class MainScreen1(private val appState: AppState) : Screen {
     }
 }
 
-// Таймлайн всех задач
 class ChartScreen(private val appState: AppState) : Screen {
     @Composable
     override fun Content() {
@@ -104,16 +110,12 @@ class ChartScreen(private val appState: AppState) : Screen {
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
                 Text("Gantt chart", style = MaterialTheme.typography.h4)
             }
-
 
             GanttChart(appState.events)
 
             Spacer(modifier = Modifier.height(16.dp))
-
-
         }
     }
 }

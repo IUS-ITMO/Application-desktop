@@ -8,6 +8,25 @@ data class EventData(
 )
 
 @Serializable
+data class TaskStats(
+    val name: String,
+    val totalRuntime: Long,
+    val averageRuntime: Long,
+    val maxRuntime: Long,
+    val minRuntime: Long,
+    val switchCount: Int,
+    val priority: Int?,
+    val stackSize: Int?,
+    val creationTime: Long
+)
+
+@Serializable
+data class CpuLoadPoint(
+    val time: Long,
+    val load: Float  // 0..1
+)
+
+@Serializable
 data class Event(
     val id: Int = -1,
     val event_code: Int = 0,
