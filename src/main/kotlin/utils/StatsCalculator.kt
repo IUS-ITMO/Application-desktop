@@ -21,7 +21,7 @@ object StatsCalculator {
         var lastTask: String? = null
 
         events.filter { it.event_code == 3 }.forEach { event ->
-            if (lastSwitchTime != null && lastTask != null) {
+            if (lastSwitchTime != null) {
                 val duration = event.server_time - lastSwitchTime!!
                 taskMap[lastTask]?.addRuntime(duration)
             }

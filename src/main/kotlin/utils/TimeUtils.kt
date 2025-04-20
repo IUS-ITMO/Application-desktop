@@ -1,14 +1,6 @@
 package utils
 
-import java.text.SimpleDateFormat
-import java.util.*
-
 object TimeUtils {
-    private val timeFormat = SimpleDateFormat("HH:mm:ss.SSS")
-
-    fun formatTimestamp(timestamp: Long): String {
-        return timeFormat.format(Date(timestamp))
-    }
 
     fun formatDuration(millis: Long): String {
         return when {

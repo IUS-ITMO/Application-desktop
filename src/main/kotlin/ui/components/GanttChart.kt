@@ -85,7 +85,7 @@ fun GanttChart(events: List<Event>) {
                 end = Offset(10f, 20f),
                 strokeWidth = 1f
             )
-            taskMap.entries.forEachIndexed { index, (taskName, intervals) ->
+            taskMap.entries.forEachIndexed { index, (_, intervals) ->
                 intervals.forEach { (start, end) ->
                     val startX = ((start - minTime).toFloat() / timeRange) * canvasWidth
                     val endX = ((end - minTime).toFloat() / timeRange) * canvasWidth
