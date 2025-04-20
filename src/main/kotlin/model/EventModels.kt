@@ -35,7 +35,8 @@ data class Event(
     val priority: Int? = null,
     val stack_size: Int? = null,
     val is_static: Boolean? = null,
-    val core_id: Int? = null
+    val core_id: Int? = null,
+    val params: Map<String, String> = emptyMap()
 ) {
     val eventType: String
         get() = when(event_code) {

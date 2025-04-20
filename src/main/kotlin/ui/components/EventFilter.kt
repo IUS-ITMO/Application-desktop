@@ -11,20 +11,16 @@ import state.AppState
 @Composable
 fun EventFilter(appState: AppState) {
     Column {
+        SearchBar(
+            searchQuery = appState.searchQuery,
+            onSearchQueryChange = { appState.searchQuery = it }
+        )
         DropdownMenu(
             options = listOf("All", "System Start", "Task Created", "Context Switch", "Task Deleted"),
             selectedOption = appState.selectedEventType ?: 0,
             onSelect = { appState.selectedEventType = it }
         )
 
-        TextField(
-            value = appState.selectedTaskName ?: "",
-            onValueChange = { appState.selectedTaskName = it },
-            label = { Text("Filter by Task Name") },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        // Новый фильтр по ядру процессора
         val coreIds = remember { appState.events.mapNotNull { it.core_id }.distinct().sorted() }
         if (coreIds.isNotEmpty()) {
             DropdownMenu(

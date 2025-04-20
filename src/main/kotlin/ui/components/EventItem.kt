@@ -1,6 +1,7 @@
 package ui.components
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -13,10 +14,11 @@ import androidx.compose.ui.unit.dp
 import model.Event
 
 @Composable
-fun EventItem(event: Event) {
+fun EventItem(event: Event, onClick: (Event) -> Unit = {}) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClick(event) }
             .padding(8.dp)
             .clip(MaterialTheme.shapes.medium)
             .border(1.dp, MaterialTheme.colors.onSurface.copy(alpha = 0.12f), MaterialTheme.shapes.medium)

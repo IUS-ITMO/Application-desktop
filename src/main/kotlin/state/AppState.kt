@@ -13,4 +13,5 @@ class AppState(initialEvents: List<Event>) {
     var selectedTaskName by mutableStateOf<String?>(null)
     var selectedTimeRange by mutableStateOf<Pair<Long, Long>?>(null)
     var selectedCoreId by mutableStateOf<Int?>(null)
+    var searchQuery by mutableStateOf("")
 }
