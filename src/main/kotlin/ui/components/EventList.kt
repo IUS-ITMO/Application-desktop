@@ -16,9 +16,9 @@ fun EventList(appState: AppState) {
                 (appState.selectedTaskName.isNullOrEmpty() || event.name.contains(appState.selectedTaskName ?: "", ignoreCase = true)) &&
                 (appState.selectedTimeRange == null || (event.server_time in appState.selectedTimeRange!!.first..appState.selectedTimeRange!!.second)) &&
                 (appState.selectedCoreId == null || event.core_id == appState.selectedCoreId)
-        (appState.searchQuery.isEmpty() ||
-                event.name.contains(appState.searchQuery, ignoreCase = true) ||
-                event.eventType.contains(appState.searchQuery, ignoreCase = true))
+//        (appState.searchQuery.isEmpty() ||
+//                event.name.contains(appState.searchQuery, ignoreCase = true) ||
+//                event.eventType.contains(appState.searchQuery, ignoreCase = true))
     }
 
     LazyColumn {

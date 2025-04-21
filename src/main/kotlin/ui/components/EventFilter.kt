@@ -11,9 +11,15 @@ import state.AppState
 @Composable
 fun EventFilter(appState: AppState) {
     Column {
-        SearchBar(
-            searchQuery = appState.searchQuery,
-            onSearchQueryChange = { appState.searchQuery = it }
+//        SearchBar(
+//            searchQuery = appState.searchQuery,
+//            onSearchQueryChange = { appState.searchQuery = it }
+//        )
+        TextField(
+            value = appState.selectedTaskName ?: "",
+            onValueChange = { appState.selectedTaskName = it },
+            label = { Text("Filter by Task Name") },
+            modifier = Modifier.fillMaxWidth()
         )
         DropdownMenu(
             options = listOf("All", "System Start", "Task Created", "Context Switch", "Task Deleted"),
@@ -27,7 +33,9 @@ fun EventFilter(appState: AppState) {
                 options = listOf("All cores") + coreIds.map { "Core $it" },
                 selectedOption = appState.selectedCoreId?.let { coreIds.indexOf(it) + 1 } ?: 0,
                 onSelect = { index ->
-                    appState.selectedCoreId = if (index == 0) null else coreIds[index - 1]
+                    if (index != null) {
+                        appState.selectedCoreId = if (index == 0) null else coreIds[index - 1]
+                    }
                 }
             )
         }
@@ -40,7 +48,7 @@ fun EventFilter(appState: AppState) {
 fun DropdownMenu(
     options: List<String>,
     selectedOption: Int,
-    onSelect: (Int) -> Unit
+    onSelect: (Int?) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
     Box(modifier = Modifier.fillMaxWidth()) {
@@ -56,7 +64,7 @@ fun DropdownMenu(
         ) {
             options.forEachIndexed { index, option ->
                 DropdownMenuItem(onClick = {
-                    onSelect(index)
+                    onSelect(if (option == "All") null else index)
                     expanded = false
                 }) {
                     Text(text = option)
