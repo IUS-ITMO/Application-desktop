@@ -105,7 +105,7 @@ class ChartScreen(private val appState: AppState) : Screen {
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                Text("Gantt chart", style = MaterialTheme.typography.h4)
+                Text("Task Execution Timeline", style = MaterialTheme.typography.h4)
             }
 
 
