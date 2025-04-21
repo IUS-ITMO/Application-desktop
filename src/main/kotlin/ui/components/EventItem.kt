@@ -1,6 +1,8 @@
 package ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -13,13 +15,30 @@ import androidx.compose.ui.unit.dp
 import model.Event
 
 @Composable
-fun EventItem(event: Event) {
+fun EventItem(event: Event, onClick: (Event) -> Unit = {}) {
+    val taskColors = mapOf(
+        "idle" to Color(0xFF4CAF50),
+        "myTask" to Color(0xFF2196F3),
+        "myTask-2" to Color(0xFFFF9800),
+        "default" to MaterialTheme.colors.primary
+    )
+
+    val bgColor = taskColors[event.name] ?: taskColors["default"]!!
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClick(event) }
             .padding(8.dp)
+            .background(
+                color = bgColor.copy(alpha = 0.1f),
+                shape = MaterialTheme.shapes.medium
+            )
             .clip(MaterialTheme.shapes.medium)
-            .border(1.dp, MaterialTheme.colors.onSurface.copy(alpha = 0.12f), MaterialTheme.shapes.medium)
+            .border(
+                width = 1.dp,
+                color = bgColor.copy(alpha = 0.3f),
+                shape = MaterialTheme.shapes.medium
+            )
             .padding(8.dp)
     ) {
         Row(
