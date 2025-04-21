@@ -59,11 +59,11 @@ class MainScreen1(private val appState: AppState) : Screen {
                     Button(onClick = { navigator.push(TaskStatsScreen(appState)) }) {
                         Text("Task Stats")
                     }
+                    Button(onClick = { navigator.push(ChartScreen(appState)) }) {
+                        Text("Task Execution Timeline")
+                    }
                     Button(onClick = { navigator.push(CpuLoadScreen(appState)) }) {
                         Text("CPU Load")
-                    }
-                    Button(onClick = { navigator.push(ChartScreen(appState)) }) {
-                        Text("Gantt Chart")
                     }
                 }
 
@@ -113,7 +113,7 @@ class ChartScreen(private val appState: AppState) : Screen {
                     horizontalArrangement = Arrangement.Start,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Gantt chart", style = MaterialTheme.typography.h4)
+                    Text("Task Execution Timeline", style = MaterialTheme.typography.h4)
                 }
 
                 GanttChart(appState.events)

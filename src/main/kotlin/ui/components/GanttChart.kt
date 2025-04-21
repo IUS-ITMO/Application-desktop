@@ -133,7 +133,7 @@ fun GanttChart(events: List<Event>) {
                                     contentColor = Color.White
                                 )
                             ) {
-                                Text("Show more", fontSize = 12.sp)
+                                Text("more", fontSize = 12.sp)
                             }
                         }
                     }
