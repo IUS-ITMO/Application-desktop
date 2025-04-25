@@ -80,6 +80,17 @@ class MainScreen1(private val appState: AppState) : Screen {
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
 
+                RealtimeControl(appState)
+                if (appState.isRealtimeMode) {
+                    LiveGanttChart(appState.events)
+                    Text("Live events: ${appState.events.size}",
+                        style = MaterialTheme.typography.caption,
+                        modifier = Modifier.padding(8.dp))
+                } else {
+                    EventStats(appState.events)
+                    EventList(appState)
+                }
+
                 EventFilter(appState)
 
                 val navigator = LocalNavigator.currentOrThrow
