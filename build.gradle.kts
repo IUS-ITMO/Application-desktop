@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm")
     id("org.jetbrains.compose")
     kotlin("plugin.serialization") version "1.9.0"
+    kotlin("plugin.compose") version "2.1.20"
 }
 
 group = "ru.ifmo.freertostracker"
@@ -23,6 +24,8 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
     implementation("cafe.adriel.voyager:voyager-navigator:1.0.0")
+    implementation ("io.ktor:ktor-client-core-jvm:3.1.2")
+    implementation("io.ktor:ktor-client-cio-jvm:3.1.2")
 }
 
 compose.desktop {
