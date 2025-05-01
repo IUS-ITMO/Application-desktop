@@ -5,7 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.swing.Swing
 import model.Event
 import model.RealtimeConfig
 import model.RealtimeEventBuffer
@@ -20,6 +22,7 @@ class AppState(initialEvents: List<Event>) {
     var selectedTimeRange by mutableStateOf<Pair<Long, Long>?>(null)
     var selectedCoreId by mutableStateOf<Int?>(null)
 
+    private val scope = CoroutineScope(Dispatchers.Swing+ SupervisorJob())
     val realtimeBuffer = RealtimeEventBuffer(1000)
     private var realtimeClient: RealtimeClient? = null
     var isRealtimeMode by mutableStateOf(false)
@@ -29,21 +32,22 @@ class AppState(initialEvents: List<Event>) {
         if (isRealtimeMode) return
 
         realtimeClient = RealtimeClient(
-            RealtimeConfig(websocketUrl = url),
-            realtimeBuffer
+            config = RealtimeConfig(websocketUrl = url),
+            buffer = realtimeBuffer,
+            scope = scope
         ).apply {
-            CoroutineScope(Dispatchers.IO).launch { connect() }
+            connect()
         }
 
         isRealtimeMode = true
-        realtimeBuffer.onBufferUpdated = { events = realtimeBuffer.getEvents() }
     }
 
-    suspend fun stopRealtimeMode() {
-        realtimeClient?.disconnect()
-        realtimeClient = null
-        isRealtimeMode = false
+    fun stopRealtimeMode() {
+        scope.launch {
+            realtimeClient?.disconnect()
+            realtimeClient = null
+            isRealtimeMode = false
+        }
     }
-
 //    var searchQuery by mutableStateOf("")
 }

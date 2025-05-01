@@ -37,7 +37,7 @@ object ImportUtils {
                 server_time = values[3].toLongOrNull() ?: 0L,
                 priority = values[4].toIntOrNull(),
                 stack_size = values[5].toIntOrNull(),
-                is_static = values[6].toBooleanStrictOrNull(),
+                is_static = values[6].toBooleanStrictOrNull() == true,
                 core_id = values[7].toIntOrNull()
             )
         }

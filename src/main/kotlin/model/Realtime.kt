@@ -4,9 +4,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RealtimeConfig(
-    val websocketUrl: String = "ws://localhost:8080/events",
+    val websocketUrl: String = "ws://localhost:18080/trace",
     val bufferSize: Int = 1000,
-    val reconnectDelay: Long = 3000
+    val reconnectDelay: Long = 3000,
+    val pingInterval: Long = 15000
 )
 
 class RealtimeEventBuffer(private val capacity: Int) {
@@ -20,6 +21,4 @@ class RealtimeEventBuffer(private val capacity: Int) {
         buffer.addLast(event)
         onBufferUpdated()
     }
-
-    fun getEvents(): List<Event> = buffer.toList()
 }

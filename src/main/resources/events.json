@@ -1,113 +1,978 @@
 {
   "data": [
     {
-      "id": 0,
       "event_code": 1,
       "name": "start",
-      "server_time": 1742033149
+      "id": 0,
+      "server_time": 1745290369665
     },
     {
+      "server_time": 1745290369665,
       "id": 1,
-      "event_code": 2,
-      "server_time": 1742033149,
-      "name": "idle",
-      "priority": 0,
-      "stack_size": 75,
-      "is_static": true
+      "capacity": 10,
+      "size": 0,
+      "name": "Queue of chars",
+      "event_code": 6
     },
     {
+      "event_code": 6,
+      "name": "TmrQ",
+      "size": 0,
+      "capacity": 20,
+      "id": 2,
+      "server_time": 1745290369666
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 0,
       "id": 3,
-      "event_code": 2,
-      "server_time": 1742033149,
-      "name": "myTask",
-      "priority": 3,
-      "stack_size": 75,
-      "is_static": true
+      "server_time": 1745290369666
     },
     {
+      "server_time": 1745290369666,
       "id": 4,
-      "event_code": 2,
-      "server_time": 1742033149,
-      "name": "myTask-2",
-      "priority": 3,
-      "stack_size": 300,
-      "is_static": false
+      "size": 1,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
     },
     {
+      "server_time": 1745290369666,
       "id": 5,
-      "event_code": 3,
-      "server_time": 1742033188,
-      "name": "myTask-2",
-      "core_id": 1
+      "size": 2,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
     },
     {
+      "server_time": 1745290369780,
       "id": 6,
-      "event_code": 3,
-      "server_time": 1742033310,
-      "name": "idle",
-      "core_id": 1
+      "size": 1,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
     },
     {
+      "server_time": 1745290369780,
       "id": 7,
-      "event_code": 3,
-      "server_time": 1742033400,
-      "name": "myTask-2",
-      "core_id": 1
+      "size": 2,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
     },
     {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 1,
       "id": 8,
-      "event_code": 3,
-      "server_time": 1742033499,
-      "name": "myTask",
-      "core_id": 1
+      "server_time": 1745290369894
     },
     {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 2,
       "id": 9,
-      "event_code": 3,
-      "server_time": 1742033890,
-      "name": "idle",
-      "core_id": 1
+      "server_time": 1745290369894
     },
     {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 1,
       "id": 10,
-      "event_code": 3,
-      "server_time": 1742034000,
-      "name": "myTask-2",
-      "core_id": 1
+      "server_time": 1745290370009
     },
     {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 2,
       "id": 11,
-      "event_code": 3,
-      "server_time": 1742034090,
-      "name": "idle",
-      "core_id": 1
+      "server_time": 1745290370009
     },
     {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 1,
       "id": 12,
-      "event_code": 3,
-      "server_time": 1742034150,
-      "name": "myTask",
-      "core_id": 1
+      "server_time": 1745290370122
     },
     {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 2,
       "id": 13,
-      "event_code": 3,
-      "server_time": 1742034155,
-      "name": "myTask-2",
-      "core_id": 1
+      "server_time": 1745290370122
     },
     {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 1,
       "id": 14,
-      "event_code": 4,
-      "server_time": 1742034255,
-      "name": "myTask-2"
+      "server_time": 1745290370236
     },
     {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 2,
       "id": 15,
-      "event_code": 3,
-      "server_time": 1742034255,
-      "name": "idle",
-      "core_id": 1
+      "server_time": 1745290370236
+    },
+    {
+      "server_time": 1745290370236,
+      "id": 16,
+      "size": 3,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290370350,
+      "id": 17,
+      "size": 2,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290370351,
+      "id": 18,
+      "size": 3,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290370464,
+      "id": 19,
+      "size": 2,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290370465,
+      "id": 20,
+      "size": 3,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290370578,
+      "id": 21,
+      "size": 2,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290370578,
+      "id": 22,
+      "size": 3,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290370692,
+      "id": 23,
+      "size": 2,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290370692,
+      "id": 24,
+      "size": 3,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290370805,
+      "id": 25,
+      "size": 2,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290370805,
+      "id": 26,
+      "size": 3,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290370806,
+      "id": 27,
+      "size": 4,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290370919,
+      "id": 28,
+      "size": 3,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290370919,
+      "id": 29,
+      "size": 4,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290371034,
+      "id": 30,
+      "size": 3,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290371034,
+      "id": 31,
+      "size": 4,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 3,
+      "id": 32,
+      "server_time": 1745290371147
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 4,
+      "id": 33,
+      "server_time": 1745290371147
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 3,
+      "id": 34,
+      "server_time": 1745290371261
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 4,
+      "id": 35,
+      "server_time": 1745290371261
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 3,
+      "id": 36,
+      "server_time": 1745290371374
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 4,
+      "id": 37,
+      "server_time": 1745290371374
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 38,
+      "server_time": 1745290371374
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 4,
+      "id": 39,
+      "server_time": 1745290371489
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 40,
+      "server_time": 1745290371489
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 4,
+      "id": 41,
+      "server_time": 1745290371603
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 42,
+      "server_time": 1745290371603
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 4,
+      "id": 43,
+      "server_time": 1745290371716
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 44,
+      "server_time": 1745290371716
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 4,
+      "id": 45,
+      "server_time": 1745290371830
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 46,
+      "server_time": 1745290371830
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 4,
+      "id": 47,
+      "server_time": 1745290371942
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 48,
+      "server_time": 1745290371942
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 6,
+      "id": 49,
+      "server_time": 1745290371942
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 50,
+      "server_time": 1745290372056
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 6,
+      "id": 51,
+      "server_time": 1745290372056
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 52,
+      "server_time": 1745290372170
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 6,
+      "id": 53,
+      "server_time": 1745290372171
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 54,
+      "server_time": 1745290372284
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 6,
+      "id": 55,
+      "server_time": 1745290372284
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 56,
+      "server_time": 1745290372398
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 6,
+      "id": 57,
+      "server_time": 1745290372398
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 5,
+      "id": 58,
+      "server_time": 1745290372511
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 6,
+      "id": 59,
+      "server_time": 1745290372511
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 7,
+      "id": 60,
+      "server_time": 1745290372511
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 6,
+      "id": 61,
+      "server_time": 1745290372626
+    },
+    {
+      "event_code": 8,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 7,
+      "id": 62,
+      "server_time": 1745290372626
+    },
+    {
+      "event_code": 7,
+      "name": "Queue of chars",
+      "success": 1,
+      "size": 6,
+      "id": 63,
+      "server_time": 1745290372742
+    },
+    {
+      "server_time": 1745290372742,
+      "id": 64,
+      "size": 7,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290372857,
+      "id": 65,
+      "size": 6,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290372857,
+      "id": 66,
+      "size": 7,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290372971,
+      "id": 67,
+      "size": 6,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290372972,
+      "id": 68,
+      "size": 7,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290373085,
+      "id": 69,
+      "size": 6,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373085,
+      "id": 70,
+      "size": 7,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373085,
+      "id": 71,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290373201,
+      "id": 72,
+      "size": 7,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373201,
+      "id": 73,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290373315,
+      "id": 74,
+      "size": 7,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373315,
+      "id": 75,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290373428,
+      "id": 76,
+      "size": 7,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373428,
+      "id": 77,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290373541,
+      "id": 78,
+      "size": 7,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373541,
+      "id": 79,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290373654,
+      "id": 80,
+      "size": 7,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373654,
+      "id": 81,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373655,
+      "id": 82,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290373769,
+      "id": 83,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373769,
+      "id": 84,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290373884,
+      "id": 85,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373884,
+      "id": 86,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290373997,
+      "id": 87,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290373998,
+      "id": 88,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290374112,
+      "id": 89,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290374113,
+      "id": 90,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290374227,
+      "id": 91,
+      "size": 8,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290374227,
+      "id": 92,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290374228,
+      "id": 93,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290374343,
+      "id": 94,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290374344,
+      "id": 95,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290374458,
+      "id": 96,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290374458,
+      "id": 97,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290374571,
+      "id": 98,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290374571,
+      "id": 99,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290374686,
+      "id": 100,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290374686,
+      "id": 101,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290374799,
+      "id": 102,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290374799,
+      "id": 103,
+      "size": 10,
+      "success": 0,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290374799,
+      "id": 104,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290374912,
+      "id": 105,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290374912,
+      "id": 106,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290375026,
+      "id": 107,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290375026,
+      "id": 108,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290375140,
+      "id": 109,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290375140,
+      "id": 110,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290375254,
+      "id": 111,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290375254,
+      "id": 112,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290375368,
+      "id": 113,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290375368,
+      "id": 114,
+      "size": 10,
+      "success": 0,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290375368,
+      "id": 115,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290375480,
+      "id": 116,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290375480,
+      "id": 117,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290375594,
+      "id": 118,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290375595,
+      "id": 119,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
+    },
+    {
+      "server_time": 1745290375708,
+      "id": 120,
+      "size": 9,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 7
+    },
+    {
+      "server_time": 1745290375708,
+      "id": 121,
+      "size": 10,
+      "success": 1,
+      "name": "Queue of chars",
+      "event_code": 8
     }
   ]
 }
