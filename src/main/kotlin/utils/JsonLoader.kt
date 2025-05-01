@@ -1,22 +1,35 @@
 package utils
 
 import kotlinx.serialization.json.Json
-import java.io.File
+import model.Event
 import model.EventData
+import java.io.File
 
 object JsonLoader {
-    fun loadEventsFromFile(path: String): EventData {
+    private val json = Json {
+        ignoreUnknownKeys = true
+        isLenient = true
+        coerceInputValues = true
+    }
+
+    fun loadEventsFromFile(path: String): List<Event> {
         return try {
             val jsonString = File(path).readText()
-            val json = Json {
-                ignoreUnknownKeys = true
-                isLenient = true
-                allowStructuredMapKeys = true
+            println("Raw JSON content (first 200 chars):\n${jsonString.take(200)}...")
+
+            try {
+                val eventData = json.decodeFromString<EventData>(jsonString)
+                if (eventData.events.isEmpty()) {
+                    println("Warning: Empty 'data' array in JSON")
+                }
+                eventData.events
+            } catch (e: Exception) {
+                println("Failed to parse as EventData, trying as direct array: ${e.message}")
+                json.decodeFromString<List<Event>>(jsonString)
             }
-            json.decodeFromString(jsonString)
         } catch (e: Exception) {
-            println("Error loading JSON file: ${e.message}")
-            throw e
+            println("Error loading JSON: ${e.message}\n${e.stackTraceToString()}")
+            emptyList()
         }
     }
 }

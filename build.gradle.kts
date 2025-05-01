@@ -26,6 +26,8 @@ dependencies {
     implementation("cafe.adriel.voyager:voyager-navigator:1.0.0")
     implementation ("io.ktor:ktor-client-core-jvm:3.1.2")
     implementation("io.ktor:ktor-client-cio-jvm:3.1.2")
+    implementation("io.ktor:ktor-client-websockets:3.1.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.10.2")
 }
 
 compose.desktop {

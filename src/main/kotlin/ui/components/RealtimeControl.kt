@@ -17,7 +17,7 @@ import state.AppState
 
 @Composable
 fun RealtimeControl(appState: AppState) {
-    var websocketUrl by remember { mutableStateOf("ws://192.168.1.1:8080/events") }
+    var websocketUrl by remember { mutableStateOf("ws://localhost:18080/trace") }
     var showDialog by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
