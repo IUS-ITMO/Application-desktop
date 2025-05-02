@@ -23,7 +23,7 @@ class AppState(initialEvents: List<Event>) {
     var selectedCoreId by mutableStateOf<Int?>(null)
 
     private val scope = CoroutineScope(Dispatchers.Swing+ SupervisorJob())
-    val realtimeBuffer = RealtimeEventBuffer(1000)
+    val realtimeBuffer = RealtimeEventBuffer(1000000)
     private var realtimeClient: RealtimeClient? = null
     var isRealtimeMode by mutableStateOf(false)
         private set
