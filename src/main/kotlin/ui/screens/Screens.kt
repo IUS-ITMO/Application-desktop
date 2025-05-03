@@ -81,15 +81,15 @@ class MainScreen1(private val appState: AppState) : Screen {
                 )
 
                 RealtimeControl(appState)
-                if (appState.isRealtimeMode) {
-                    LiveGanttChart(appState.events)
-                    Text("Live events: ${appState.events.size}",
-                        style = MaterialTheme.typography.caption,
-                        modifier = Modifier.padding(8.dp))
-                } else {
-                    EventStats(appState.events)
-                    EventList(appState)
-                }
+//                if (appState.isRealtimeMode) {
+//                    LiveGanttChart(appState.events)
+//                    Text("Live events: ${appState.events.size}",
+//                        style = MaterialTheme.typography.caption,
+//                        modifier = Modifier.padding(8.dp))
+//                } else {
+//                    EventStats(appState.events)
+//                    EventList(appState)
+//                }
 
                 EventFilter(appState)
 
@@ -103,6 +103,9 @@ class MainScreen1(private val appState: AppState) : Screen {
                     }
                     Button(onClick = { navigator.push(ChartScreen(appState)) }) {
                         Text("Task Execution Timeline")
+                    }
+                    Button(onClick = { navigator.push(QueueScreen(appState)) }) {
+                        Text("Queue Stats Timeline")
                     }
                     Button(onClick = { navigator.push(CpuLoadScreen(appState)) }) {
                         Text("CPU Load")
@@ -159,6 +162,39 @@ class ChartScreen(private val appState: AppState) : Screen {
                 }
 
                 GanttChart(appState.events)
+
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+        }
+    }
+}
+class QueueScreen(private val appState: AppState) : Screen {
+    @Composable
+    override fun Content() {
+        AnimatedScreen {
+            Column(
+                modifier = Modifier.fillMaxSize().padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                val navigator = LocalNavigator.currentOrThrow
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Button(onClick = { navigator.pop() }) {
+                        Text("Back")
+                    }
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("Queue Execution Timeline", style = MaterialTheme.typography.h4)
+                }
+
+                QueueChart(appState.events)
 
                 Spacer(modifier = Modifier.height(16.dp))
             }
