@@ -70,7 +70,7 @@ fun GanttChart(events: List<Event>) {
     val minTime = taskMap.values.flatten().minOfOrNull { it.first } ?: return
     val maxTime = taskMap.values.flatten().maxOfOrNull { it.second } ?: return
     val timeRange = maxTime - minTime
-    val divisions = 12
+    val divisions = 7
     val showTasksAtFirstCount = 1
     val showMoreTasksCount = 1
 
@@ -94,8 +94,8 @@ fun GanttChart(events: List<Event>) {
         Canvas(modifier = Modifier.fillMaxWidth().height(1.dp)) {
             drawLine(
                 color = Color.Gray,
-                start = Offset(140f, 0f),
-                end = Offset(size.width-40, 0f),
+                start = Offset(0f, 0f),
+                end = Offset(size.width, 0f),
                 strokeWidth = 1f
             )
         }
@@ -161,7 +161,7 @@ fun GanttChart(events: List<Event>) {
                         strokeWidth = 1f
                     )
                 }
-                drawLine(Color.Gray, Offset(0f, taskAreaHeight), Offset(canvasWidth, taskAreaHeight), strokeWidth = 1f)
+//                drawLine(Color.Gray, Offset(0f, taskAreaHeight), Offset(canvasWidth, taskAreaHeight), strokeWidth = 1f)
 
                 taskMap.entries.forEach { (taskName, intervals) ->
                     val index = taskToIndex[taskName] ?: return@forEach

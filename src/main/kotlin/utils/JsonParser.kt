@@ -1,22 +1,25 @@
 package utils
 
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
 import model.Event
 import model.EventData
-import java.io.File
+import model.NumericBooleanSerializer
 
-object JsonLoader {
-    private val json = Json {
+object JsonParser {
+    val json = Json {
         ignoreUnknownKeys = true
         isLenient = true
         coerceInputValues = true
+        explicitNulls = false
+        serializersModule = SerializersModule {
+            contextual(Boolean::class, NumericBooleanSerializer)
+        }
     }
 
-    fun loadEventsFromFile(path: String): List<Event> {
-        return try {
-            val jsonString = File(path).readText()
-            println("Raw JSON content (first 200 chars):\n${jsonString.take(200)}...")
 
+    fun parseEvents(jsonString: String): List<Event> {
+        return try {
             try {
                 val eventData = json.decodeFromString<EventData>(jsonString)
                 if (eventData.events.isEmpty()) {
@@ -28,8 +31,10 @@ object JsonLoader {
                 json.decodeFromString<List<Event>>(jsonString)
             }
         } catch (e: Exception) {
-            println("Error loading JSON: ${e.message}\n${e.stackTraceToString()}")
+            println("Error parsing events from json" + e.message)
             emptyList()
         }
     }
 }
+
+

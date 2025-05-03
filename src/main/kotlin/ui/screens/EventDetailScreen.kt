@@ -51,7 +51,7 @@ class EventDetailScreen(private val event: Event) : Screen {
                             2 -> {
                                 InfoRow("Priority", event.priority?.toString() ?: "N/A")
                                 InfoRow("Stack Size", event.stack_size?.toString() ?: "N/A")
-                                InfoRow("Static", event.is_static?.toString() ?: "N/A")
+                                InfoRow("Static", event.is_static.toString())
                             }
                             3 -> {
                                 InfoRow("Core ID", event.core_id?.toString() ?: "N/A")
@@ -60,14 +60,21 @@ class EventDetailScreen(private val event: Event) : Screen {
                     }
                 }
 
-                if (event.params.isNotEmpty()) {
+                val dynamicParams = buildMap {
+                    if (event.core_id != null) put("Core ID", event.core_id.toString())
+                    if (event.success != null) put("Success", event.success.toString())
+                    if (event.size != null) put("Size", event.size.toString())
+                    if (event.capacity != null) put("Capacity", event.capacity.toString())
+                }
+
+                if (dynamicParams.isNotEmpty()) {
                     Spacer(Modifier.height(16.dp))
                     Card(modifier = Modifier.fillMaxWidth()) {
                         Column(modifier = Modifier.padding(16.dp)) {
-                            Text("Additional Parameters", style = MaterialTheme.typography.h6)
+                            Text("Additional Data", style = MaterialTheme.typography.h6)
                             Divider(Modifier.padding(vertical = 8.dp))
 
-                            event.params.forEach { (key, value) ->
+                            dynamicParams.forEach { (key, value) ->
                                 InfoRow(key, value)
                             }
                         }

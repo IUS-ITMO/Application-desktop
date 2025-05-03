@@ -23,10 +23,10 @@ fun main() = application {
 private fun loadDataAsync(appState: AppState) {
     try {
         val eventData = JsonLoader.loadEventsFromFile("src/main/resources/events.json")
-        if (eventData.data.isEmpty()) {
+        if (eventData.isEmpty()) {
             println("Warning: Loaded empty event list")
         }
-        appState.events = eventData.data
+        appState.events = eventData
     } catch (e: Exception) {
         println("Failed to load data: ${e.message}")
         e.printStackTrace()
