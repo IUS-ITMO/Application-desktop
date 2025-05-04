@@ -21,4 +21,5 @@ class RealtimeEventBuffer(private val capacity: Int) {
         buffer.addLast(event)
         onBufferUpdated()
     }
+    fun getEvents(): List<Event> = buffer.toList()
 }

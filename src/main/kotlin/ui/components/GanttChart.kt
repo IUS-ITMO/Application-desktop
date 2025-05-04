@@ -71,8 +71,8 @@ fun GanttChart(events: List<Event>) {
     val maxTime = taskMap.values.flatten().maxOfOrNull { it.second } ?: return
     val timeRange = maxTime - minTime
     val divisions = 7
-    val showTasksAtFirstCount = 1
-    val showMoreTasksCount = 1
+    val showTasksAtFirstCount = 5
+    val showMoreTasksCount = 5
 
     val rowHeightDp = 35.dp
     val barHeightDp = 20.dp

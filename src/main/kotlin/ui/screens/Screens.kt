@@ -81,15 +81,15 @@ class MainScreen1(private val appState: AppState) : Screen {
                 )
 
                 RealtimeControl(appState)
-//                if (appState.isRealtimeMode) {
-//                    LiveGanttChart(appState.events)
-//                    Text("Live events: ${appState.events.size}",
-//                        style = MaterialTheme.typography.caption,
-//                        modifier = Modifier.padding(8.dp))
-//                } else {
-//                    EventStats(appState.events)
-//                    EventList(appState)
-//                }
+                if (appState.isRealtimeMode) {
+                    LiveGanttChart(appState.events)
+                    Text("Live events: ${appState.events.size}",
+                        style = MaterialTheme.typography.caption,
+                        modifier = Modifier.padding(8.dp))
+                } else {
+                    EventStats(appState.events)
+                    EventList(appState)
+                }
 
                 EventFilter(appState)
 
@@ -161,7 +161,7 @@ class ChartScreen(private val appState: AppState) : Screen {
                     Text("Task Execution Timeline", style = MaterialTheme.typography.h4)
                 }
 
-                GanttChart(appState.events)
+                GanttChart(appState.realtimeBuffer.getEvents())
 
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -193,8 +193,29 @@ class QueueScreen(private val appState: AppState) : Screen {
                 ) {
                     Text("Queue Execution Timeline", style = MaterialTheme.typography.h4)
                 }
+                if (appState.isRealtimeMode) {
+                    val realtimeEvents = appState.realtimeBuffer.getEvents()
 
-                QueueChart(appState.events)
+                    if (realtimeEvents.isEmpty()) {
+                        Text(
+                            "There is no real-time data (connection is expected or data has not been received",
+                            color = MaterialTheme.colors.error,
+                            style = MaterialTheme.typography.body1
+                        )
+                    } else {
+                        QueueChart(realtimeEvents)
+                    }
+                } else {
+                    if (appState.events.isEmpty()) {
+                        Text(
+                            "There are no loaded events",
+                            color = MaterialTheme.colors.error,
+                            style = MaterialTheme.typography.body1
+                        )
+                    } else {
+                        QueueChart(appState.events)
+                    }
+                }
 
                 Spacer(modifier = Modifier.height(16.dp))
             }

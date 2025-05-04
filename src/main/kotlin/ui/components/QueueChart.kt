@@ -68,33 +68,33 @@ fun generateQueueMap(events: List<Event>): Map<String, MutableList<Pair<Long, In
 
     return queueMap
 }
-//@Composable
-//fun QueueChart(events: List<Event>) {
-//    val queueMap = generateQueueMap(events)
-//    val verticalScrollState = rememberScrollState()
-//    val horizontalScrollState = rememberScrollState()
-//
-//    Column(
-//        modifier = Modifier
-//            .padding(16.dp)
-//            .verticalScroll(verticalScrollState)
-//    ) {
-//        queueMap.forEach { (queueName, points) ->
-//            Text(
-//                "Очередь: $queueName",
-//                fontWeight = FontWeight.Bold,
-//                modifier = Modifier
-//                    .horizontalScroll(horizontalScrollState)
-//                    .padding(bottom = 4.dp)
-//            )
-//            points.forEach { (time, size) ->
-//                Text("  Время: $time, Размер: $size")
-//            }
-//            Spacer(modifier = Modifier.height(8.dp))
-//        }
-//    }
-//
-//}
+@Composable
+fun QueueChar(events: List<Event>) {
+    val queueMap = generateQueueMap(events)
+    val verticalScrollState = rememberScrollState()
+    val horizontalScrollState = rememberScrollState()
+
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .verticalScroll(verticalScrollState)
+    ) {
+        queueMap.forEach { (queueName, points) ->
+            Text(
+                "Очередь: $queueName",
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .horizontalScroll(horizontalScrollState)
+                    .padding(bottom = 4.dp)
+            )
+            points.forEach { (time, size) ->
+                Text("  Время: $time, Размер: $size")
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+    }
+
+}
 @Composable
 fun QueueChart(events: List<Event>) {
     val queueMap = generateQueueMap(events)
