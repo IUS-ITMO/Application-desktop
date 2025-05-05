@@ -12,8 +12,10 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import kotlinx.coroutines.delay
 import state.AppState
 import ui.components.*
+import utils.TimeTicker
 
 @Composable
 fun App(appState: AppState) {
@@ -138,6 +140,15 @@ class MainScreen1(private val appState: AppState) : Screen {
 class ChartScreen(private val appState: AppState) : Screen {
     @Composable
     override fun Content() {
+//        var now by remember { mutableStateOf(System.currentTimeMillis()) }
+//        LaunchedEffect(Unit) {
+//            while (true) {
+//                delay(500)
+//                now = System.currentTimeMillis()
+//            }
+//        }
+        val ticker = remember { TimeTicker() }
+        val now by ticker.now.collectAsState()
         AnimatedScreen {
             Column(
                 modifier = Modifier.fillMaxSize().padding(16.dp),
@@ -161,7 +172,7 @@ class ChartScreen(private val appState: AppState) : Screen {
                     Text("Task Execution Timeline", style = MaterialTheme.typography.h4)
                 }
 
-                GanttChart(appState.realtimeBuffer.getEvents())
+                GanttChart(appState.realtimeBuffer.getEvents(), now)
 
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -171,6 +182,15 @@ class ChartScreen(private val appState: AppState) : Screen {
 class QueueScreen(private val appState: AppState) : Screen {
     @Composable
     override fun Content() {
+//        var now by remember { mutableStateOf(System.currentTimeMillis()) }
+//        LaunchedEffect(Unit) {
+//            while (true) {
+//                delay(500)
+//                now = System.currentTimeMillis()
+//            }
+//        }
+        val ticker = remember { TimeTicker() }
+        val now by ticker.now.collectAsState()
         AnimatedScreen {
             Column(
                 modifier = Modifier.fillMaxSize().padding(16.dp),
@@ -203,7 +223,7 @@ class QueueScreen(private val appState: AppState) : Screen {
                             style = MaterialTheme.typography.body1
                         )
                     } else {
-                        QueueChart(realtimeEvents)
+                        QueueChart(realtimeEvents, now)
                     }
                 } else {
                     if (appState.events.isEmpty()) {
@@ -213,7 +233,7 @@ class QueueScreen(private val appState: AppState) : Screen {
                             style = MaterialTheme.typography.body1
                         )
                     } else {
-                        QueueChart(appState.events)
+                        QueueChart(appState.events, now)
                     }
                 }
 

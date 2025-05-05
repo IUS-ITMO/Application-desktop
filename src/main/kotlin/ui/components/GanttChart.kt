@@ -62,14 +62,34 @@ fun generateTaskMap(events: List<Event>): Map<String, MutableList<Pair<Long, Lon
     return taskMap
 }
 
+fun currentTaskMap(events: List<Event>, now: Long): Map<String, MutableList<Pair<Long, Long>>> {
+    val rawTaskMap = generateTaskMap(events)
+    val windowStart = now - 10_000L
+    val windowEnd   = now
+    return rawTaskMap.mapValues { (_, intervals) ->
+        intervals.mapNotNull { (start, end) ->
+            val s = maxOf(start, windowStart)
+            val e = minOf(end,   windowEnd)
+            if (s < e) s to e else null
+        }.toMutableList()
+    }.filterValues { it.isNotEmpty() }
+}
+
 @Composable
-fun GanttChart(events: List<Event>) {
-    val taskMap = generateTaskMap(events)
+fun GanttChart(events: List<Event>, now: Long) {
+    val taskMap = currentTaskMap(events, now)
     val taskNames = taskMap.keys.toList()
+    Column {
+        Text("now: $now")
+        Text("events: ${events.size}")
+        Text("intervals: ${taskMap.values.flatten().size}")
+        Text("filtered: ${taskMap.values.flatten().size}")
+        Spacer(modifier = Modifier.height(8.dp))
+    }
 
     val minTime = taskMap.values.flatten().minOfOrNull { it.first } ?: return
     val maxTime = taskMap.values.flatten().maxOfOrNull { it.second } ?: return
-    val timeRange = maxTime - minTime
+    val timeRange = 10000L //maxTime - minTime
     val divisions = 7
     val showTasksAtFirstCount = 5
     val showMoreTasksCount = 5

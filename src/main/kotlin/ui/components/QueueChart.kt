@@ -2,25 +2,18 @@ package ui.components
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.*
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.platform.Font
-import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
 import model.Event
 import org.jetbrains.skia.Font
 import org.jetbrains.skia.FontMgr
 import org.jetbrains.skia.FontStyle
 import org.jetbrains.skia.Paint
-import org.jetbrains.skia.Typeface
 
 // Генерация карты очередей
 fun generateQueueMap(events: List<Event>): Map<String, MutableList<Pair<Long, Int>>> {
@@ -68,6 +61,18 @@ fun generateQueueMap(events: List<Event>): Map<String, MutableList<Pair<Long, In
 
     return queueMap
 }
+
+fun currentQueueMap(events: List<Event>, now: Long): Map<String, MutableList<Pair<Long, Int>>> {
+    val rawQueueMap = generateQueueMap(events)
+    val windowStart = now - 10_000L
+    val windowEnd   = now
+    return rawQueueMap.mapValues { (_, queues) ->
+        queues.filter { (time, _) ->
+            time >= windowStart
+        }.toMutableList()
+    }.filterValues { it.isNotEmpty() }
+}
+
 @Composable
 fun QueueChar(events: List<Event>) {
     val queueMap = generateQueueMap(events)
@@ -96,8 +101,8 @@ fun QueueChar(events: List<Event>) {
 
 }
 @Composable
-fun QueueChart(events: List<Event>) {
-    val queueMap = generateQueueMap(events)
+fun QueueChart(events: List<Event>, now: Long) {
+    val queueMap = currentQueueMap(events, now)
 
     val allPoints = queueMap.values.flatten()
     val minTime = allPoints.minOf { it.first }
